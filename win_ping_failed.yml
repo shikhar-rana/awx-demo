@@ -1,0 +1,17 @@
+---
+- name: Win failed server list
+  hosts: all
+  vars:
+    date: "{{ lookup('pipe', 'date +%Y%m%d') }}"
+  tasks:
+    - name: failed server file create
+      file:
+        path: /tmp/failed_server_file_{{date}}
+        state: touch
+        mode: 0777
+      delegate_to: localhost
+    - name: enter line in file 
+      lineinfile:
+        path: /tmp/failed_server_file_{{date}}
+        line: "Failed server - {{ansible_host}}"
+      delegate_to: localhost
