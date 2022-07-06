@@ -1,0 +1,14 @@
+---
+- name: Windows File Create
+  hosts: all
+  vars:
+    date: "{{ lookup('pipe', 'date +%Y%m%d') }}"
+  tasks:
+    - name: file create
+      win_file:
+        path: C:\Temp\test_file_{{date}}
+        state: touch
+    - name: enter line in file 
+      win_lineinfile:
+        path: C:\Temp\test_file_{{date}}
+        line: This file is created by AWX
