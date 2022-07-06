@@ -8,7 +8,3 @@
       win_file:
         path: C:\Temp\test_file_{{date}}
         state: touch
-    - name: enter line in file 
-      win_lineinfile:
-        path: C:\Temp\test_file_{{date}}
-        line: This file is created by AWX
