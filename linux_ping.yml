@@ -1,0 +1,6 @@
+---
+- name: Linux Ping Test
+  hosts: all
+  tasks:
+    - name: linux ping
+      ping:
