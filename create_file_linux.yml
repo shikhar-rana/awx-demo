@@ -1,0 +1,15 @@
+---
+- name: Linux File Create
+  hosts: all
+  vars:
+    date: "{{ lookup('pipe', 'date +%Y%m%d') }}"
+  tasks:
+    - name: file create
+      file:
+        path: /tmp/test_file_{{date}}
+        state: touch
+        mode: 777
+    - name: enter line in file 
+      lineinfile:
+        path: /tmp/test_file_{{date}}
+        line: This file is created by AWX
